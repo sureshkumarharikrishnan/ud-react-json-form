@@ -1,0 +1,18 @@
+{
+  "firstName": {
+    "type": "string",
+    "label": "First Name",
+    "description": "The person's first name."
+  },
+  "lastName": {
+    "type": "string",
+    "label": "Last Name",
+    "description": "The person's last name."
+  },
+  "age": {
+    "description": "Age in years which must be equal to or greater than zero.",
+    "label": "Age",
+    "type": "string",
+    "minimum": 0
+  }
+}
