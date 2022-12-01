@@ -9,10 +9,18 @@
     "label": "Last Name",
     "description": "The person's last name."
   },
-  "age": {
+  "month": {
+    "label": "Month",
+    "type": "integer",
+    "ctrl": "DropDown",
+    "datasource": "months"
+  },
+  "day": {
     "description": "Age in years which must be equal to or greater than zero.",
-    "label": "Age",
-    "type": "string",
-    "minimum": 0
+    "label": "Day",
+    "type": "integer",
+    "ctrl": "DropDown",
+    "datasource": "days",
+    "parentFieldName": "month"
   }
 }

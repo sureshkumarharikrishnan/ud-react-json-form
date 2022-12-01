@@ -4,7 +4,6 @@ function TextBox(props: ControlProps): FieldControl {
   const onFieldChange = (event: any) => {
     const args: ControlChangeEventArgs = {
       value: event.target.value,
-      name: props.model,
     };
     props.onChange(args);
   };
@@ -13,9 +12,9 @@ function TextBox(props: ControlProps): FieldControl {
     <div className="form-group">
       <label>{props.label}</label>
       <input
-        className="form-control"
+        className="form-control form-control-sm"
         onChange={onFieldChange}
-        value={props.value}
+        value={props.value || ""}
       />
     </div>
   );

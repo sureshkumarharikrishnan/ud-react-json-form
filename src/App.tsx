@@ -2,8 +2,10 @@ import "./App.css";
 import { memo, useState } from "react";
 import Field from "./components/Field";
 import { FieldProps } from "./components/controls/types";
+import { ControlVisibilityHandler } from "./service/control-visibility-handler/ctrl-visibility-handler.service";
 
-const schema = getSchema("test");
+const schemaName = "test";
+const schema = getSchema(schemaName);
 
 function App() {
   const [data, setData] = useState<any>(getInitialState(schema));
@@ -17,11 +19,12 @@ function App() {
       {Object.keys(schema).map((x) => {
         const fprops: FieldProps = {
           ...schema[x],
-          model: x,
+          model: data,
           onChange: (args) => {
             setData((prev: any) => ({ ...prev, ...args }));
           },
-          value: data[x],
+          fieldName: x,
+          visibilityHandler: new ControlVisibilityHandler(schemaName),
         };
         return <Field {...fprops} key={`field_${x}`} />;
       })}
@@ -41,8 +44,7 @@ function getSchema(name: string): { [key: string]: any } {
 
 function getInitialState(schema: any): any {
   const state: { [key: string]: any } = {};
-  Object.keys(schema).forEach((x) => (state[x] = ""));
-  // state.firstName = "Suresh KUmar";
+  Object.keys(schema).forEach((x) => (state[x] = null));
   return state;
 }
 
