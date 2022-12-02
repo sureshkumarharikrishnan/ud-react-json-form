@@ -19,11 +19,8 @@ export type ControlChangeEventArgs = {
 export type ControlChangeEvent = (args: ControlChangeEventArgs) => void;
 
 export type FieldChangeEvent = (args: { [key: string]: any }) => void;
-export type FieldProps = Omit<
-  ControlProps,
-  "onChange" & "data" & "value" & "disabled"
-> & {
-  onChange: FieldChangeEvent;
+export type FieldProps = {
+  onFieldChange: FieldChangeEvent;
   type: string;
   ctrl: string;
   datasource: string;
@@ -31,6 +28,7 @@ export type FieldProps = Omit<
   fieldName: string;
   parentFieldName: string;
   visibilityHandler: IVisibilityHandler;
+  label: string;
 };
 
 export type GenericData = {

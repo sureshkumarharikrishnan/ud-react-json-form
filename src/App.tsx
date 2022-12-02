@@ -20,7 +20,7 @@ function App() {
         const fprops: FieldProps = {
           ...schema[x],
           model: data,
-          onChange: (args) => {
+          onFieldChange: (args) => {
             setData((prev: any) => ({ ...prev, ...args }));
           },
           fieldName: x,

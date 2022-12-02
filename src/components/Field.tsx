@@ -13,8 +13,8 @@ function Field(props: FieldProps) {
   let F: FieldControlComponent = controls[props.ctrl || props.type] ?? <></>;
 
   const onChange = useCallback((args: ControlChangeEventArgs) => {
-    if (props.onChange)
-      props.onChange({
+    if (props.onFieldChange)
+      props.onFieldChange({
         [props.fieldName]: Convert(
           args.value,
           (DataType as any)[props.type.toUpperCase()]
