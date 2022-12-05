@@ -8,6 +8,7 @@ import {
 } from "./controls/types";
 import controls from "./controls";
 import { DataSourceService } from "../service/data-source.service";
+import { useNonInitialEffect } from "../utils/hooks";
 
 function Field(props: FieldProps) {
   let F: FieldControlComponent = controls[props.ctrl || props.type] ?? <></>;
@@ -26,8 +27,23 @@ function Field(props: FieldProps) {
   //on Parent Field change
   const [lookUpData, setLookUpData] = useState<GenericData[]>([]);
 
+  // useEffect(() => {
+  //   if (props.datasource) {
+  //     const result = GetData(props.datasource, props.model);
+  //     setLookUpData(result);
+  //     // onChange({ value: null });
+  //   }
+  // }, [props.model[props.parentFieldName]]);
+
   useEffect(() => {
     if (props.datasource) {
+      const result = GetData(props.datasource, props.model);
+      setLookUpData(result);
+    }
+  }, []);
+
+  useNonInitialEffect(() => {
+    if (props.datasource && props.parentFieldName) {
       const result = GetData(props.datasource, props.model);
       setLookUpData(result);
       onChange({ value: null });
@@ -77,10 +93,12 @@ function Convert(value: any, type: DataType): any {
 
 export default memo(Field, (prev, next) => {
   let areEqual = prev.model[prev.fieldName] === next.model[next.fieldName];
-  if (prev.parentFieldName)
+
+  if (prev.parentFieldName) {
     areEqual =
       areEqual &&
       prev.model[prev.parentFieldName] === next.model[next.parentFieldName];
+  }
 
   return areEqual;
 });

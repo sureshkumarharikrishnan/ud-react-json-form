@@ -29,7 +29,7 @@ function App() {
         return <Field {...fprops} key={`field_${x}`} />;
       })}
 
-      <button type="button" className="btn btn-primary" onClick={onClick}>
+      <button type="button" className="btn btn-success" onClick={onClick}>
         Submit
       </button>
     </>
@@ -38,7 +38,6 @@ function App() {
 
 function getSchema(name: string): { [key: string]: any } {
   const file = require(`./schemas/${name}.schema.json`);
-
   return file;
 }
 
