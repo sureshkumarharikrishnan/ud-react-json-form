@@ -1,13 +1,16 @@
+import { useTranslation } from "react-i18next";
 import { ControlProps, FieldControl } from "./types";
 
 function DropDown(props: ControlProps): FieldControl {
+  const [t] = useTranslation(props.section);
+
   const onChange = (event: any) => {
     props.onChange({ value: event.target.value });
   };
 
   return (
     <div className="form-group">
-      <label>{props.label}</label>
+      <label>{t(props.label)}</label>
       <select
         className="form-control form-control-sm"
         value={props.value || -1}

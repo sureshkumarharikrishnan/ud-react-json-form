@@ -8,6 +8,7 @@ export type FieldControlComponent = (props: ControlProps) => FieldControl;
 export type ControlProps = {
   value: string;
   label: string;
+  section: string;
   disabled: boolean;
   lookUpData: GenericData[];
   onChange: ControlChangeEvent;
@@ -29,6 +30,7 @@ export type FieldProps = {
   parentFieldName: string;
   visibilityHandler: IVisibilityHandler;
   label: string;
+  section: string;
 };
 
 export type GenericData = {
